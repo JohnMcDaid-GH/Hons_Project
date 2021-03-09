@@ -1,0 +1,208 @@
+<HTML>
+<HEAD>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+
+    <TITLE>Benchmarking JSON vs XML</TITLE>
+
+    <script type="text/javascript" src="prototype.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <style>
+        body {
+            margin: 10px;
+        }
+
+    </style>
+
+    <SCRIPT LANGUAGE=javascript>
+
+        function getJSON() {
+            var JSONDate1 = new Date();
+            JSONStartTime = JSONDate1.getTime();
+
+            for (i = 0; i < 100 ; i++) {
+                //var urlJSON = "http://localhost/Hons_Project/APIs/API-JSON.php";
+                //var urlJSON = "http://johnmcdaid.net/Api%20Demo/APIs/API-JSON-Test-Data.php"
+                var urlJSON = "http://localhost/Hons_Project/APIs/API-JSON-Test-Data.php"
+                new Ajax.Request(urlJSON, {
+                    method: 'get',
+                    asynchronous: false,
+                    dataType: 'json',
+                    onComplete(data) {
+                        document.getElementById("responseSampleJSON").innerHTML = data.responseText;
+                    }
+                });
+            }
+
+            var JSONDate2 = new Date();
+            var JSONEndTime = JSONDate2.getTime();
+
+            var outWrite = "Total time JSON in  = <b>" + (JSONEndTime - JSONStartTime) + "  ms</b><br>";
+            outWrite+= "Average time per JSON request = <b>" + ((JSONEndTime - JSONStartTime)/100) + " ms</b>";
+            document.getElementById("responseServerJSON").innerHTML = outWrite;
+        }
+
+        function getXML() {
+
+            var XMLDate1 = new Date();
+            XMLStartTime = XMLDate1.getTime();
+
+            for(i = 0; i < 100 ; i++) {
+                //var urlXML="http://localhost/Hons_Project/APIs/API-XML.php";
+                //var urlXML = "http://johnmcdaid.net/Api%20Demo/APIs/API-XML-Test-Data.php"
+                var urlXML = "http://localhost/Hons_Project/APIs/API-XML-Test-Data.php"
+                new Ajax.Request(urlXML, {
+                    method: 'get',
+                    asynchronous: false,
+                    dataType: 'xml',
+                    onComplete(data) {
+                        document.getElementById("responseSampleXML").innerHTML = data.responseText;
+                    }
+                });
+            }
+
+            var XMLDate2 = new Date();
+            var XMLEndTime = XMLDate2.getTime();
+
+            var outWrite="Total time XML in = <b>"+ (XMLEndTime-XMLStartTime)+" ms</b><br>";
+            outWrite+= "Average time per XML request = <b>" + ((XMLEndTime - XMLStartTime)/100) + " ms</b>";
+            document.getElementById("responseServerXML").innerHTML=outWrite;
+        }
+
+        function getBigJSON() {
+            var JSONBigDate1 = new Date();
+            JSONBigStartTime = JSONBigDate1.getTime();
+
+            for (i = 0; i < 100 ; i++) {
+                //var urlJSON = "http://localhost/Hons_Project/APIs/API-JSON.php";
+                //var urlJSON = "http://johnmcdaid.net/Api%20Demo/APIs/API-JSON-Test-Big-Data.php"
+                var urlJSON = "http://localhost/Hons_Project/APIs/API-JSON-Test-Big-Data.php"
+                new Ajax.Request(urlJSON, {
+                    method: 'get',
+                    asynchronous: false,
+                    dataType: 'json',
+                    onComplete(data) {
+                        document.getElementById("responseSampleJSONBig").innerHTML = data.responseText;
+                    }
+
+                });
+            }
+
+            var JSONBigDate2 = new Date();
+            var JSONBigEndTime = JSONBigDate2.getTime();
+
+            var outWrite = "Total time JSON in  = <b>" + (JSONBigEndTime - JSONBigStartTime) + "  ms</b><br>";
+            outWrite+= "Average time per JSON request = <b>" + ((JSONBigEndTime - JSONBigStartTime)/100) + " ms</b>";
+            document.getElementById("responseServerJSONBig").innerHTML = outWrite;
+        }
+
+        function getBigXML() {
+
+            var XMLBigDate1 = new Date();
+            XMLBigStartTime = XMLBigDate1.getTime();
+
+            for(i = 0; i < 100 ; i++) {
+                //var urlXML="http://localhost/Hons_Project/APIs/API-XML.php";
+                //var urlXML = "http://johnmcdaid.net/Api%20Demo/APIs/API-XML-Test-Big-Data.php"
+                var urlXML = "http://localhost/Hons_Project/APIs/API-XML-Test-Big-Data.php"
+                new Ajax.Request(urlXML, {
+                    method: 'get',
+                    asynchronous: false,
+                    dataType: 'xml',
+                    onComplete(data) {
+                        document.getElementById("responseSampleXMLBig").innerHTML = data.responseText;
+                    }
+
+                });
+            }
+
+            var XMLBigDate2 = new Date();
+            var XMLBigEndTime = XMLBigDate2.getTime();
+
+            var outWrite="Total time XML in = <b>"+ (XMLBigEndTime-XMLBigStartTime)+" ms</b><br>";
+            outWrite+= "Average time per XML request = <b>" + ((XMLBigEndTime - XMLBigStartTime)/100) + " ms</b>";
+            document.getElementById("responseServerXMLBig").innerHTML=outWrite;
+        }
+
+
+
+
+
+
+
+
+    </script>
+</head>
+<BODY>
+<H1><B>Benchmarking JSON vs XML </B></H1>
+<i>John McDaid - Honours Project</i></br></br></br>
+
+<div style="background-color: whitesmoke">
+<H3>First Scenario - 100 Requests to retrieve 1000 rows and <u>2</u> columns from Database Table </H3>
+<INPUT type="button" class="btn btn-primary" onclick="getJSON()" value="Get JSON " /><a href="http://johnmcdaid.net/Api%20Demo/APIs/API-JSON-Test-Data.php" target="_blank">  View JSON Data Source - 9.7kb</a><br><br>
+<INPUT type="button" class="btn btn-danger"  onclick="getXML()" value="Get XML" /><a href="http://johnmcdaid.net/Api%20Demo/APIs/API-XML-Test-Data.php" target="_blank">  View XML Data Source - 9.8kb</a><br><br>
+</div>
+<br>
+<div style="background-color: whitesmoke">
+<H3>Second Scenario - 100 Requests to retrieve 1000 rows and <u>4</u> columns from Database Table </H3>
+<INPUT type="button" class="btn btn-primary" onclick="getBigJSON()" value="Get JSON " /><a href="http://johnmcdaid.net/Api%20Demo/APIs/API-JSON-Test-Big-Data.php" target="_blank">  View JSON Data Source - 15.5kb</a> <br><br>
+<INPUT type="button" class="btn btn-danger" onclick="getBigXML()" value="Get XML" /><a href="http://johnmcdaid.net/Api%20Demo/APIs/API-XML-Test-Big-Data.php" target="_blank">  View XML Data Source - 17.1kb</a><br><br>
+</div>
+<br>
+<table width="100%" border="0" cellspacing="10" cellpadding="10">
+    <tr>
+        <td bgcolor="#007BFF"><strong style="color: white">First Scenario - AJAX JSON </strong></td>
+        <td bgcolor="#DC3545
+"><strong style="color: white">First Scenario - AJAX XML </strong></td>
+    </tr>
+    <tr>
+        <td height="90" style="color:#007BFF"><div id="responseServerJSON" >&nbsp;</div></td>
+        <td  style="color:#DC3545"><div id="responseServerXML" >&nbsp;</div></td>
+    </tr>
+    <tr>
+        <td bgcolor="#007BFF"><strong style="color: white">Second Scenario - AJAX JSON </strong></td>
+        <td bgcolor="#DC3545
+"><strong style="color: white">Second Scenario - AJAX XML </strong></td>
+    </tr>
+    <tr>
+        <td height="90" style="color:#007BFF"><div id="responseServerJSONBig" >&nbsp;</div></td>
+        <td style="color:#DC3545" ><div id="responseServerXMLBig" >&nbsp;</div></td>
+    </tr>
+</table>
+<br><hr><br>
+<div class="container" style="display: flex">
+
+    <div style="width: 50%">
+        <h3>1st Scenario Data from JSON API</h3>
+        <p id="responseSampleJSON" style="padding: 20px"></p></br>
+    </div>
+
+    <div style="flex-grow: 1; width: 50%">
+        <h3>1st Scenario Data from XML API</h3>
+        <p id="responseSampleXML" style="padding: 20px"></p>
+    </div>
+
+</div>
+
+<div class="container" style="display: flex">
+
+    <div style="width: 50%">
+            <h3>2nd Scenario Data from JSON API</h3>
+            <p id="responseSampleJSONBig" style="padding: 20px"></p></br>
+        </div>
+
+    <div style="flex-grow: 1; width: 50%">
+            <h3>2nd Scenario Data from XML API</h3>
+            <p id="responseSampleXMLBig" style="padding: 20px"></p>
+        </div>
+
+</div>
+
+
+<!--</script>-->
+</BODY>
+</HTML>
+

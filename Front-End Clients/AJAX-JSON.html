@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSON AJAX Demo</title>
+</head>
+<body>
+<h1>JSON AJAX Demo</h1>
+<br><br>
+<p id="content"></p>
+
+
+<script>
+    // var xmlhttp;
+    // xmlhttp = new XMLHttpRequest();
+    // xmlhttp.onreadystatechange = function () {
+    //     if (this.readyState == 4 && this.status == 200) {
+    //         var apiresults;
+    //         var titleoutput;
+    //         var postoutput;
+    //         apiresults = JSON.parse(this.responseText);
+    //         titleoutput = apiresults.title;
+    //         postoutput = apiresults.post;
+    //         document.getElementById("title").innerHTML = titleoutput;
+    //         document.getElementById("post").innerHTML = postoutput;
+    //     }
+    // };
+    //
+    // xmlhttp.open("GET", "http://localhost/Hons_Project/newsposts/read_one.php?id=7", true);
+    // xmlhttp.send();
+
+    var contentContainer = document.getElementById('content');
+
+
+    var myRequest = new XMLHttpRequest();
+    myRequest.open('GET', 'http://localhost/Hons_Project/adoptionposts/API-JSON.php')
+    myRequest.onload = function() {
+        var myData = JSON.parse(myRequest.responseText);
+
+        renderHTML(myData);
+    };
+    myRequest.send();
+
+    function renderHTML(data) {
+        var htmlstring = '';
+
+        for (let i = 0; i < data.length; i++) {
+            htmlstring += data[i].title + "</br>" + data[i].post + "</br>" + data[i].author + "</br>" + data[i].date + "</br>" +
+            data[i].imagelocation + "<br><br><br><hr><br><br><br>";
+        }
+
+        contentContainer.insertAdjacentHTML('beforeend', htmlstring);
+    }
+</script>
+</body>
+</html>

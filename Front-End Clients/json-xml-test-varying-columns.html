@@ -1,0 +1,481 @@
+<HTML>
+<HEAD>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+
+    <TITLE>Benchmarking JSON vs XML </TITLE>
+
+    <script type="text/javascript" src="prototype.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <style>
+        body {
+            margin: 10px;
+        }
+
+    </style>
+
+    <SCRIPT LANGUAGE=javascript>
+
+        //1000 ROWS 1 COLUMN
+        function getJSON1000r1c() {
+            var JSONDate1 = new Date();
+            JSONStartTime = JSONDate1.getTime();
+
+            for (i = 0; i < 100 ; i++) {
+
+                var urlJSON = "http://localhost/Hons_Project/BenchAPIs/API-JSON-Data-1000r-1c.php"
+                new Ajax.Request(urlJSON, {
+                    method: 'get',
+                    asynchronous: false,
+                    dataType: 'json',
+                    onComplete(data) {
+                        document.getElementById("responseSampleJSON1000r1c").innerHTML = data.responseText;
+                    }
+                });
+            }
+
+            var JSONDate2 = new Date();
+            var JSONEndTime = JSONDate2.getTime();
+
+            var outWrite = "Total time JSON in  = <b>" + (JSONEndTime - JSONStartTime) + "  ms</b><br>";
+            outWrite+= "Average time per JSON request = <b>" + ((JSONEndTime - JSONStartTime)/100) + " ms</b>";
+            outWrite+= "<br>Total Data Received = <b>" + (100*2.6).toFixed(2) + "kb</b>";
+            document.getElementById("responseServerJSON1000r1c").innerHTML = outWrite;
+        }
+
+        function getXML1000r1c() {
+
+            var XMLDate1 = new Date();
+            XMLStartTime = XMLDate1.getTime();
+
+            for(i = 0; i < 100 ; i++) {
+
+                var urlXML = "http://localhost/Hons_Project/BenchAPIs/API-XML-Data-1000r-1c.php"
+                new Ajax.Request(urlXML, {
+                    method: 'get',
+                    asynchronous: false,
+                    dataType: 'xml',
+                    onComplete(data) {
+                        document.getElementById("responseSampleXML1000r1c").innerHTML = data.responseText;
+                    }
+                });
+            }
+
+            var XMLDate2 = new Date();
+            var XMLEndTime = XMLDate2.getTime();
+
+            var outWrite="Total time XML in = <b>"+ (XMLEndTime-XMLStartTime)+" ms</b><br>";
+            outWrite+= "Average time per XML request = <b>" + ((XMLEndTime - XMLStartTime)/100) + " ms</b>";
+            outWrite+= "<br>Total Data Received = <b>" + (100*2.6).toFixed(2) + "kb</b>";
+            document.getElementById("responseServerXML1000r1c").innerHTML=outWrite;
+        }
+
+        //1000 ROWS 2 COLUMNS
+        function getJSON1000r2c() {
+            var JSONDate1 = new Date();
+            JSONStartTime = JSONDate1.getTime();
+
+            for (i = 0; i < 100 ; i++) {
+
+                var urlJSON = "http://localhost/Hons_Project/BenchAPIs/API-JSON-Data-1000r-2c.php"
+                new Ajax.Request(urlJSON, {
+                    method: 'get',
+                    asynchronous: false,
+                    dataType: 'json',
+                    onComplete(data) {
+                        document.getElementById("responseSampleJSON1000r2c").innerHTML = data.responseText;
+                    }
+                });
+            }
+
+            var JSONDate2 = new Date();
+            var JSONEndTime = JSONDate2.getTime();
+
+            var outWrite = "Total time JSON in  = <b>" + (JSONEndTime - JSONStartTime) + "  ms</b><br>";
+            outWrite+= "Average time per JSON request = <b>" + ((JSONEndTime - JSONStartTime)/100) + " ms</b>";
+            outWrite+= "<br>Total Data Received = <b>" + (100*12.9).toFixed(2) + "kb</b>";
+            document.getElementById("responseServerJSON1000r2c").innerHTML = outWrite;
+        }
+
+        function getXML1000r2c() {
+
+            var XMLDate1 = new Date();
+            XMLStartTime = XMLDate1.getTime();
+
+            for(i = 0; i < 100 ; i++) {
+
+                var urlXML = "http://localhost/Hons_Project/BenchAPIs/API-XML-Data-1000r-2c.php"
+                new Ajax.Request(urlXML, {
+                    method: 'get',
+                    asynchronous: false,
+                    dataType: 'xml',
+                    onComplete(data) {
+                        document.getElementById("responseSampleXML1000r2c").innerHTML = data.responseText;
+                    }
+                });
+            }
+
+            var XMLDate2 = new Date();
+            var XMLEndTime = XMLDate2.getTime();
+
+            var outWrite="Total time XML in = <b>"+ (XMLEndTime-XMLStartTime)+" ms</b><br>";
+            outWrite+= "Average time per XML request = <b>" + ((XMLEndTime - XMLStartTime)/100) + " ms</b>";
+            outWrite+= "<br>Total Data Received = <b>" + (100*13.0).toFixed(2) + "kb</b>";
+            document.getElementById("responseServerXML1000r2c").innerHTML=outWrite;
+        }
+
+        //1000 ROWS 4 COLUMNS
+        function getJSON1000r4c() {
+            var JSONBigDate1 = new Date();
+            JSONBigStartTime = JSONBigDate1.getTime();
+
+            for (i = 0; i < 100 ; i++) {
+
+                var urlJSON = "http://localhost/Hons_Project/BenchAPIs/API-JSON-Data-1000r-4c.php"
+                new Ajax.Request(urlJSON, {
+                    method: 'get',
+                    asynchronous: false,
+                    dataType: 'json',
+                    onComplete(data) {
+                        document.getElementById("responseSampleJSON1000r4c").innerHTML = data.responseText;
+                    }
+
+                });
+            }
+
+            var JSONBigDate2 = new Date();
+            var JSONBigEndTime = JSONBigDate2.getTime();
+
+            var outWrite = "Total time JSON in  = <b>" + (JSONBigEndTime - JSONBigStartTime) + "  ms</b><br>";
+            outWrite+= "Average time per JSON request = <b>" + ((JSONBigEndTime - JSONBigStartTime)/100) + " ms</b>";
+            outWrite+= "<br>Total Data Received = <b>" + (100*30.6).toFixed(2) + "kb</b>";
+            document.getElementById("responseServerJSON1000r4c").innerHTML = outWrite;
+        }
+
+        function getXML1000r4c() {
+
+            var XMLBigDate1 = new Date();
+            XMLBigStartTime = XMLBigDate1.getTime();
+
+            for(i = 0; i < 100 ; i++) {
+
+                var urlXML = "http://localhost/Hons_Project/BenchAPIs/API-XML-Data-1000r-4c.php"
+                new Ajax.Request(urlXML, {
+                    method: 'get',
+                    asynchronous: false,
+                    dataType: 'xml',
+                    onComplete(data) {
+                        document.getElementById("responseSampleXML1000r4c").innerHTML = data.responseText;
+                    }
+
+                });
+            }
+
+            var XMLBigDate2 = new Date();
+            var XMLBigEndTime = XMLBigDate2.getTime();
+
+            var outWrite="Total time XML in = <b>"+ (XMLBigEndTime-XMLBigStartTime)+" ms</b><br>";
+            outWrite+= "Average time per XML request = <b>" + ((XMLBigEndTime - XMLBigStartTime)/100) + " ms</b>";
+            outWrite+= "<br>Total Data Received = <b>" + (100*31.3).toFixed(2) + "kb</b>";
+            document.getElementById("responseServerXML1000r4c").innerHTML=outWrite;
+        }
+
+        //1000 ROWS 8 COLUMNS
+        function getJSON1000r8c() {
+            var JSONBigDate1 = new Date();
+            JSONBigStartTime = JSONBigDate1.getTime();
+
+            for (i = 0; i < 100 ; i++) {
+
+                var urlJSON = "http://localhost/Hons_Project/BenchAPIs/API-JSON-Data-1000r-8c.php"
+                new Ajax.Request(urlJSON, {
+                    method: 'get',
+                    asynchronous: false,
+                    dataType: 'json',
+                    onComplete(data) {
+                        document.getElementById("responseSampleJSON1000r8c").innerHTML = data.responseText;
+                    }
+
+                });
+            }
+
+            var JSONBigDate2 = new Date();
+            var JSONBigEndTime = JSONBigDate2.getTime();
+
+            var outWrite = "Total time JSON in  = <b>" + (JSONBigEndTime - JSONBigStartTime) + "  ms</b><br>";
+            outWrite+= "Average time per JSON request = <b>" + ((JSONBigEndTime - JSONBigStartTime)/100) + " ms</b>";
+            outWrite+= "<br>Total Data Received = <b>" + (100*66.7).toFixed(2) + "kb</b>";
+            document.getElementById("responseServerJSON1000r8c").innerHTML = outWrite;
+        }
+
+        function getXML1000r8c() {
+
+            var XMLBigDate1 = new Date();
+            XMLBigStartTime = XMLBigDate1.getTime();
+
+            for(i = 0; i < 100 ; i++) {
+
+                var urlXML = "http://localhost/Hons_Project/BenchAPIs/API-XML-Data-1000r-8c.php"
+                new Ajax.Request(urlXML, {
+                    method: 'get',
+                    asynchronous: false,
+                    dataType: 'xml',
+                    onComplete(data) {
+                        document.getElementById("responseSampleXML1000r8c").innerHTML = data.responseText;
+                    }
+
+                });
+            }
+
+            var XMLBigDate2 = new Date();
+            var XMLBigEndTime = XMLBigDate2.getTime();
+
+            var outWrite="Total time XML in = <b>"+ (XMLBigEndTime-XMLBigStartTime)+" ms</b><br>";
+            outWrite+= "Average time per XML request = <b>" + ((XMLBigEndTime - XMLBigStartTime)/100) + " ms</b>";
+            outWrite+= "<br>Total Data Received = <b>" + (100*69).toFixed(2) + "kb</b>";
+            document.getElementById("responseServerXML1000r8c").innerHTML=outWrite;
+        }
+
+        //1000 ROWS 16 COLUMNS
+        function getJSON1000r16c() {
+            var JSONDate1 = new Date();
+            JSONStartTime = JSONDate1.getTime();
+
+            for (i = 0; i < 100 ; i++) {
+
+                var urlJSON = "http://localhost/Hons_Project/BenchAPIs/API-JSON-Data-1000r-16c.php"
+                new Ajax.Request(urlJSON, {
+                    method: 'get',
+                    asynchronous: false,
+                    dataType: 'json',
+                    onComplete(data) {
+                        document.getElementById("responseSampleJSON1000r16c").innerHTML = data.responseText;
+                    }
+                });
+            }
+
+            var JSONDate2 = new Date();
+            var JSONEndTime = JSONDate2.getTime();
+
+            var outWrite = "Total time JSON in  = <b>" + (JSONEndTime - JSONStartTime) + "  ms</b><br>";
+            outWrite+= "Average time per JSON request = <b>" + ((JSONEndTime - JSONStartTime)/100) + " ms</b>";
+            outWrite+= "<br>Total Data Received = <b>" + (100*141).toFixed(2) + "kb</b>";
+            document.getElementById("responseServerJSON1000r16c").innerHTML = outWrite;
+        }
+
+        function getXML1000r16c() {
+
+            var XMLDate1 = new Date();
+            XMLStartTime = XMLDate1.getTime();
+
+            for(i = 0; i < 100 ; i++) {
+
+                var urlXML = "http://localhost/Hons_Project/BenchAPIs/API-XML-Data-1000r-16c.php"
+                new Ajax.Request(urlXML, {
+                    method: 'get',
+                    asynchronous: false,
+                    dataType: 'xml',
+                    onComplete(data) {
+                        document.getElementById("responseSampleXML1000r16c").innerHTML = data.responseText;
+                    }
+                });
+            }
+
+            var XMLDate2 = new Date();
+            var XMLEndTime = XMLDate2.getTime();
+
+            var outWrite="Total time XML in = <b>"+ (XMLEndTime-XMLStartTime)+" ms</b><br>";
+            outWrite+= "Average time per XML request = <b>" + ((XMLEndTime - XMLStartTime)/100) + " ms</b>";
+            outWrite+= "<br>Total Data Received = <b>" + (100*148).toFixed(2) + "kb</b>";
+            document.getElementById("responseServerXML1000r16c").innerHTML=outWrite;
+        }
+
+
+
+
+
+
+
+
+    </script>
+</head>
+<BODY>
+<H1><B>Benchmarking JSON vs XML  </B></H1>
+<h4>Variable Column Sizes</h4></br>
+<i>John McDaid - Honours Project</i></br></br></br>
+
+<div style="background-color: whitesmoke">
+
+<H3>First Scenario - 100 Requests to retrieve 1000 rows and <u>1</u> column from Database Table </H3>
+    <INPUT type="button" class="btn btn-primary" onclick="getJSON1000r1c()" value="Get JSON " /><a href="http://localhost/Hons_Project/BenchAPIs/API-JSON-Data-1000r-1c.php" target="_blank">  View JSON Data Source - 2.6kb</a><br><br>
+    <INPUT type="button" class="btn btn-danger"  onclick="getXML1000r1c()" value="Get XML" /><a href="http://localhost/Hons_Project/BenchAPIs/API-XML-Data-1000r-1c.php" target="_blank">  View XML Data Source - 2.6kb</a><br><br>
+</div>
+<table width="100%" border="0" cellspacing="10" cellpadding="10">
+    <tr>
+        <td bgcolor="#007BFF"><strong style="color: white">First Scenario - AJAX JSON </strong></td>
+        <td bgcolor="#DC3545"><strong style="color: white">First Scenario - AJAX XML </strong></td>
+    </tr>
+    <tr>
+        <td height="90" style="color:#007BFF"><div id="responseServerJSON1000r1c" >&nbsp;</div></td>
+        <td  style="color:#DC3545"><div id="responseServerXML1000r1c" >&nbsp;</div></td>
+    </tr>
+</table>
+<br>
+
+<H3>Second Scenario - 100 Requests to retrieve 1000 rows and <u>2</u> columns from Database Table </H3>
+    <INPUT type="button" class="btn btn-primary" onclick="getJSON1000r2c()" value="Get JSON " /><a href="http://localhost/Hons_Project/BenchAPIs/API-JSON-Data-1000r-2c.php" target="_blank">  View JSON Data Source - 12.9kb</a><br><br>
+    <INPUT type="button" class="btn btn-danger"  onclick="getXML1000r2c()" value="Get XML" /><a href="http://localhost/Hons_Project/BenchAPIs/API-XML-Data-1000r-2c.php" target="_blank">  View XML Data Source - 13.0kb</a><br><br>
+</div>
+<table width="100%" border="0" cellspacing="10" cellpadding="10">
+    <tr>
+        <td bgcolor="#007BFF"><strong style="color: white">Second Scenario - AJAX JSON </strong></td>
+        <td bgcolor="#DC3545"><strong style="color: white">Second Scenario - AJAX XML </strong></td>
+    </tr>
+    <tr>
+        <td height="90" style="color:#007BFF"><div id="responseServerJSON1000r2c" >&nbsp;</div></td>
+        <td style="color:#DC3545" ><div id="responseServerXML1000r2c" >&nbsp;</div></td>
+    </tr>
+</table>
+<br>
+
+<div style="background-color: whitesmoke">
+<H3>Third Scenario - 100 Requests to retrieve 1000 rows and <u>4</u> columns from Database Table </H3>
+    <INPUT type="button" class="btn btn-primary" onclick="getJSON1000r4c()" value="Get JSON " /><a href="http://localhost/Hons_Project/BenchAPIs/API-JSON-Data-1000r-4c.php" target="_blank">  View JSON Data Source - 30.6kb</a> <br><br>
+    <INPUT type="button" class="btn btn-danger" onclick="getXML1000r4c()" value="Get XML" /><a href="http://localhost/Hons_Project/BenchAPIs/API-XML-Data-1000r-4c.php" target="_blank">  View XML Data Source - 31.3kb</a><br><br>
+</div>
+<table width="100%" border="0" cellspacing="10" cellpadding="10">
+    <tr>
+        <td bgcolor="#007BFF"><strong style="color: white">Third Scenario - AJAX JSON </strong></td>
+        <td bgcolor="#DC3545"><strong style="color: white">Third Scenario - AJAX XML </strong></td>
+    </tr>
+    <tr>
+        <td height="90" style="color:#007BFF"><div id="responseServerJSON1000r4c" >&nbsp;</div></td>
+        <td style="color:#DC3545" ><div id="responseServerXML1000r4c" >&nbsp;</div></td>
+    </tr>
+</table>
+<br>
+
+<div style="background-color: whitesmoke">
+    <H3>Fourth Scenario - 100 Requests to retrieve 1000 rows and <u>8</u> columns from Database Table </H3>
+    <INPUT type="button" class="btn btn-primary" onclick="getJSON1000r8c()" value="Get JSON " /><a href="http://localhost/Hons_Project/BenchAPIs/API-JSON-Data-1000r-8c.php" target="_blank">  View JSON Data Source - 66.7kb</a> <br><br>
+    <INPUT type="button" class="btn btn-danger" onclick="getXML1000r8c()" value="Get XML" /><a href="http://localhost/Hons_Project/BenchAPIs/API-XML-Data-1000r-8c.php" target="_blank">  View XML Data Source - 69.0kb</a><br><br>
+</div>
+<table width="100%" border="0" cellspacing="10" cellpadding="10">
+    <tr>
+        <td bgcolor="#007BFF"><strong style="color: white">Fourth Scenario - AJAX JSON </strong></td>
+        <td bgcolor="#DC3545"><strong style="color: white">Fourth Scenario - AJAX XML </strong></td>
+    </tr>
+    <tr>
+        <td height="90" style="color:#007BFF"><div id="responseServerJSON1000r8c" >&nbsp;</div></td>
+        <td style="color:#DC3545" ><div id="responseServerXML1000r8c" >&nbsp;</div></td>
+    </tr>
+</table>
+<br>
+
+<H3>Fifth Scenario - 100 Requests to retrieve 1000 rows and <u>16</u> columns from Database Table </H3>
+<INPUT type="button" class="btn btn-primary" onclick="getJSON1000r16c()" value="Get JSON " /><a href="http://localhost/Hons_Project/BenchAPIs/API-JSON-Data-1000r-16c.php" target="_blank">  View JSON Data Source - 141.0kb</a><br><br>
+<INPUT type="button" class="btn btn-danger"  onclick="getXML1000r16c()" value="Get XML" /><a href="http://localhost/Hons_Project/BenchAPIs/API-XML-Data-1000r-16c.php" target="_blank">  View XML Data Source - 148.0kb</a><br><br>
+</div>
+<table width="100%" border="0" cellspacing="10" cellpadding="10">
+    <tr>
+        <td bgcolor="#007BFF"><strong style="color: white">Fifth Scenario - AJAX JSON </strong></td>
+        <td bgcolor="#DC3545"><strong style="color: white">Fifth Scenario - AJAX XML </strong></td>
+    </tr>
+    <tr>
+        <td height="90" style="color:#007BFF"><div id="responseServerJSON1000r16c" >&nbsp;</div></td>
+        <td style="color:#DC3545" ><div id="responseServerXML1000r16c" >&nbsp;</div></td>
+    </tr>
+</table>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+<br><hr><br>
+
+<div class="container" style="display: flex">
+
+    <div style="width: 50%">
+        <h3>1st Scenario Data from JSON API</h3>
+        <p id="responseSampleJSON1000r1c" style="padding: 20px"></p></br>
+    </div>
+
+    <div style="flex-grow: 1; width: 50%">
+        <h3>1st Scenario Data from XML API</h3>
+        <p id="responseSampleXML1000r1c" style="padding: 20px"></p>
+    </div>
+
+</div>
+
+<div class="container" style="display: flex">
+
+    <div style="width: 50%">
+        <h3>2nd Scenario Data from JSON API</h3>
+        <p id="responseSampleJSON1000r2c" style="padding: 20px"></p></br>
+    </div>
+
+    <div style="flex-grow: 1; width: 50%">
+        <h3>2nd Scenario Data from XML API</h3>
+        <p id="responseSampleXML1000r2c" style="padding: 20px"></p>
+    </div>
+
+</div>
+
+<div class="container" style="display: flex">
+
+    <div style="width: 50%">
+            <h3>3rd Scenario Data from JSON API</h3>
+            <p id="responseSampleJSON1000r4c" style="padding: 20px"></p></br>
+        </div>
+
+    <div style="flex-grow: 1; width: 50%">
+            <h3>3rd Scenario Data from XML API</h3>
+            <p id="responseSampleXML1000r4c" style="padding: 20px"></p>
+        </div>
+
+</div>
+
+<div class="container" style="display: flex">
+
+    <div style="width: 50%">
+        <h3>4th Scenario Data from JSON API</h3>
+        <p id="responseSampleJSON1000r8c" style="padding: 20px"></p></br>
+    </div>
+
+    <div style="flex-grow: 1; width: 50%">
+        <h3>4th Scenario Data from XML API</h3>
+        <p id="responseSampleXML1000r8c" style="padding: 20px"></p>
+    </div>
+
+</div>
+
+<div class="container" style="display: flex">
+
+    <div style="width: 50%">
+        <h3>5th Scenario Data from JSON API</h3>
+        <p id="responseSampleJSON1000r16c" style="padding: 20px"></p></br>
+    </div>
+
+    <div style="flex-grow: 1; width: 50%">
+        <h3>5th Scenario Data from XML API</h3>
+        <p id="responseSampleXML1000r16c" style="padding: 20px"></p>
+    </div>
+
+</div>
+
+
+<!--</script>-->
+</BODY>
+</HTML>
+

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+<h1>XML AJAX Demo</h1>
+
+
+<br><br>
+<p id="content"></p>
+
+<script>
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                renderHTML(this);
+            }
+        };
+        xhttp.open('GET', 'http://localhost/Hons_Project/adoptionposts/API-XML.php', true);
+        xhttp.send();
+
+    function renderHTML() {
+        let xmlResponse = xhttp.responseXML;
+        root = xmlResponse.documentElement;
+        titles = root.getElementsByTagName("title");
+        posts = root.getElementsByTagName("post");
+        authors = root.getElementsByTagName("author");
+        dates = root.getElementsByTagName("date");
+        imagelocations = root.getElementsByTagName("imagelocation");
+
+        
+        let result="";
+        for (var i=0; i < titles.length; i++) {
+            result += titles.item(i).firstChild.data + "<br>" + posts.item(i).firstChild.data + "<br>" + authors.item(i).firstChild.data +
+            "<br>" + dates.item(i).firstChild.data + "<br>" + imagelocations.item(i).firstChild.data + "<br><br><br><hr><br><br><br>";
+        }
+
+        content = document.getElementById("content");
+        content.innerHTML = result;
+
+        // var i;
+        // var xmlDoc = xml.responseXML;
+        // var content = "";
+        // var x = xmlDoc.getElementsByTagName("root");
+        // console.log(x.length);
+        //
+        // for (i = 0; i < x.length; i++) {
+        //     content += x[i].getElementsByTagName("title")[0].childNodes[0].nodeValue + "<br><br>";
+        // }
+        // console.log(x[i].getElementsByTagName("title")[0].childNodes[0].nodeValue);
+        //
+        // document.getElementById("demo").innerHTML = content;
+    }
+</script>
+
+</body>
+</html>
